@@ -50,11 +50,8 @@ df.drop(['BillingDate', 'Year', 'Month', 'Day'], axis=1, inplace=True)
 df.head()
 
 df5 = df.rename(columns={'NetValue':'y'})
-
 df5.head()
-
 print(df5.dtypes)
-
 df5['y'] = pd.to_numeric(df5['y'],errors = 'coerce')
 
 prophet = Prophet()
@@ -64,8 +61,7 @@ future = prophet.make_future_dataframe(periods=100)
 future.tail()
 
 forecast = prophet.predict(future)
+
 forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].tail()
-
 forecast[['ds', 'yhat', 'yhat_lower', 'yhat_upper']].head()
-
 forecast.to_csv("simple_res_final.csv")
